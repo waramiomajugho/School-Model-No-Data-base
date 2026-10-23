@@ -1,0 +1,15 @@
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\bin\Debug\net10.0\SchoolModel.exe
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\bin\Debug\net10.0\SchoolModel.deps.json
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\bin\Debug\net10.0\SchoolModel.runtimeconfig.json
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\bin\Debug\net10.0\SchoolModel.dll
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\bin\Debug\net10.0\SchoolModel.pdb
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\obj\Debug\net10.0\SchoolModel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\obj\Debug\net10.0\SchoolModel.AssemblyInfoInputs.cache
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\obj\Debug\net10.0\SchoolModel.AssemblyInfo.cs
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\obj\Debug\net10.0\SchoolModel.csproj.CoreCompileInputs.cache
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\obj\Debug\net10.0\SchoolModel.sourcelink.json
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\obj\Debug\net10.0\SchoolModel.dll
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\obj\Debug\net10.0\refint\SchoolModel.dll
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\obj\Debug\net10.0\SchoolModel.pdb
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\obj\Debug\net10.0\SchoolModel.genruntimeconfig.cache
+C:\Users\utc\Documents\FULL STACK PROJECTS\School Model No Data base\SchoolModel\obj\Debug\net10.0\ref\SchoolModel.dll
