@@ -1,37 +1,48 @@
 using System;
 
-
-namespace SchoolModel.Models;
-
-    
-
-public abstract class SchoolMembers 
+namespace SchoolModel.Models
 {
-    public string Id { get; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public DateTime DateOfBirth { get; set; }
-
-    public string FullName => $"{FirstName} {LastName}";
-
-    public int Age 
+    public abstract class SchoolMembers
     {
-        get
+        public string Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        
+        private DateTime _dob;
+        public DateTime Dob 
         {
-            var today = DateTime.Today;
-            var age = today.Year - DateOfBirth.Year;
-            if (DateOfBirth.Date > today.AddYears(-age)) age--;
-            return age;
+            get => _dob;
+            set
+            {
+                if (value > DateTime.Today)
+                {
+                    throw new ArgumentException("Date of birth cannot be in the future.");
+                }
+                _dob = value;
+            }
         }
-    }
 
-    protected SchoolMembers(string id, string firstName, string lastName, DateTime dob) 
-    {
-        Id = id;
-        FirstName = firstName;
-        LastName = lastName;
-        DateOfBirth = dob;
-    }
+        public string FullName => $"{FirstName} {LastName}";
 
-    public abstract string Describe();
+        
+        public int Age 
+        {
+            get
+            {
+                int age = DateTime.Today.Year - Dob.Year;
+                if (Dob.Date > DateTime.Today.AddYears(-age)) age--;
+                return age;
+            }
+        }
+
+        protected SchoolMembers(string id, string firstName, string lastName, DateTime dob)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Dob = dob; // Triggers validation setter
+        }
+
+        public abstract string Describe();
+    }
 }

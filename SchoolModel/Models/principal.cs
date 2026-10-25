@@ -2,7 +2,8 @@ using System;
 
 namespace SchoolModel.Models
 {
-    public class Principal : SchoolMembers
+   
+    public class Principal : SchoolMembers, IReportable
     {
         public string OfficeNumber { get; set; }
         public DateTime StartDate { get; set; }
@@ -14,7 +15,9 @@ namespace SchoolModel.Models
             StartDate = startDate;
         }
 
-        
         public override string Describe() => $"[Principal] {FullName}, Age: {Age}, Office: {OfficeNumber}, Start Date: {StartDate:yyyy-MM-dd}";
+
+        
+        public string GetReportDetails() => $"[Principal Report] ID: {Id}, Name: {FullName}, Office: {OfficeNumber}, Started: {StartDate:yyyy-MM-dd}";
     }
 }

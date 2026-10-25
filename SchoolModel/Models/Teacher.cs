@@ -2,33 +2,35 @@ using System;
 
 namespace SchoolModel.Models
 {
-    public class Teacher : SchoolMembers
+    public class Teacher : SchoolMembers, IReportable
     {
+        
+        private decimal _salary;
+
         public string Subject { get; set; }
 
         
-        private decimal _salary;
         public decimal Salary 
         {
             get => _salary;
-            set 
+            set
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Salary cannot be negative!");
+                    throw new ArgumentOutOfRangeException(nameof(value), "Salary cannot be negative.");
                 }
                 _salary = value;
             }
         }
 
-        public Teacher(string id, string firstName, string lastName, DateTime dateOfBirth, string subject, decimal salary)
-            : base(id, firstName, lastName, dateOfBirth)
+        public Teacher(string id, string firstName, string lastName, DateTime dob, string subject, decimal salary)
+            : base(id, firstName, lastName, dob)
         {
             Subject = subject;
             Salary = salary; 
         }
 
-        
-        public override string Describe() => $"[Teacher] {FullName}, Age: {Age}, Subject: {Subject}, Salary: {_salary:C}";
+        public override string Describe() => $"[Teacher] {FullName}, Subject: {Subject}, Salary: ${Salary:N2}";
+        public string GetReportDetails() => $"[Teacher Report] ID: {Id}, Name: {FullName}, Salary: ${Salary:N2}";
     }
 }

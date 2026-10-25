@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 
@@ -8,40 +7,42 @@ namespace SchoolModel.Models
     {
         public string Title { get; set; }
         public string Code { get; set; }
-        public Teacher ? AssignedTeacher { get; set; }
+        public Teacher? AssignedTeacher { get; set; }
+        
+        
         public int Capacity { get; }
         
-        public List<Student> EnrolledStudents { get; } = new List<Student>();
+        
+        private readonly List<Student> _enrolledStudents = new List<Student>();
+        
+        
+        public IReadOnlyCollection<Student> EnrolledStudents => _enrolledStudents.AsReadOnly();
 
         public Course(string title, string code, int capacity)
         {
+            if (capacity <= 0) throw new ArgumentException("Capacity must be greater than zero.");
             Title = title;
             Code = code;
             Capacity = capacity;
         }
 
+        
         public void EnrollStudent(Student student)
         {
-            if (EnrolledStudents.Count >= Capacity)
+            if (_enrolledStudents.Count >= Capacity)
             {
                 throw new InvalidOperationException($"Cannot enroll {student.FullName}. Course '{Title}' is at full capacity ({Capacity} students).");
-
             }
 
-            if (!EnrolledStudents.Contains(student))
+            if (!_enrolledStudents.Contains(student))
             {
-                EnrolledStudents.Add(student);
+                _enrolledStudents.Add(student);
             }
         }
 
-        
         public string GetReportDetails()
         {
-           
-
-           string teacherName = AssignedTeacher != null ? AssignedTeacher.FullName : "Unassigned";
-            return $"[Course Report] Course: {Title} ({Code}), Teacher: {teacherName}, Enrolled Students: {EnrolledStudents.Count}/{Capacity}";
-        
+            return $"[Course Report] Course: {Title} ({Code}), Seats: {_enrolledStudents.Count}/{Capacity}";
         }
     }
 }
