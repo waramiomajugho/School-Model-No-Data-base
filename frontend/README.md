@@ -1,16 +1,27 @@
-# React + Vite
+[ App.jsx ]
+                    (State: searchQuery, roleFilter)
+                                │
+        ┌───────────────────────┴───────────────────────┐
+        ▼                                               ▼
+[ Header.jsx ]                                    [ FilterBar.jsx ]
+(Title & subtitle)                       (Search Input & Role Filter Buttons)
+                                                        │
+                                                        ▼
+                                                  [ PersonList.jsx ]
+                                              (Filters data & renders count)
+                                                        │
+                                                        ▼
+                                                 [ PersonCard.jsx ]
+                                           (Conditional rendering per role)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Component Structure (App.jsx, Header.jsx, FilterBar.jsx, PersonList.jsx, PersonCard.jsx): The application is split into 5 distinct single-responsibility files. App holds the centralized state, passing down props to handle user inputs and filtered lists.
 
-## Expanding the ESLint configuration
+Dynamic UI (PersonCard.jsx): Uses conditional rendering (&& and ternaries) inside a single component to dynamically adapt its layout depending on whether the entity is a student, teacher, or principal, avoiding any duplicate card components.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Interactivity & State (useState): Combines a live text search with category filtering buttons so both work together seamlessly without canceling each other out.
+
+User Experience & Polish: Features a live visible count, a clean empty state message for zero results, and unique key props on mapped arrays to ensure zero browser console warnings.                          
