@@ -9,16 +9,53 @@ namespace SchoolModel
     {
         static void Main(string[] args)
         {
-            
-            School mySchool = new School();
+            var mySchool = new School();
+
+            var studentRepo = new Repository<Student>();
+            var teacherRepo = new Repository<Teacher>();
+            var courseRepo = new Repository<Course>();
+            var departmentRepo = new Repository<Department>();
 
             
-            mySchool.People.Add(new Student("S001", "Alice", "Smith", new DateTime(2008, 5, 14), "ENR-2026-01", 10));
-            mySchool.People.Add(new Teacher("T001", "Bob", "Jones", new DateTime(1985, 9, 22), "Mathematics", 55000m));
-            mySchool.People.Add(new Principal("P001", "Dr. Charles", "Brown", new DateTime(1970, 3, 10), "Office 101", new DateTime(2015, 8, 1)));
+            var mathematicsTeacher = new Teacher("T001", "Bob", "Jones", new DateTime(1985, 9, 22), "Mathematics", 55000m) { Id = "T001" };
+            var scienceTeacher = new Teacher("T002", "Sarah", "Connor", new DateTime(1980, 4, 12), "Physics", 62000m) { Id = "T002" };
+            teacherRepo.Add(mathematicsTeacher);
+            teacherRepo.Add(scienceTeacher);
+
+            departmentRepo.Add(new Department("Mathematics", mathematicsTeacher)
+            {
+                Id = "D001",
+                Name = "Mathematics",
+                HeadTeacher = mathematicsTeacher,
+                Teachers = new List<Teacher> { mathematicsTeacher }
+            });
+            departmentRepo.Add(new Department("Science", scienceTeacher)
+            {
+                Id = "D002",
+                Name = "Science",
+                HeadTeacher = scienceTeacher,
+                Teachers = new List<Teacher> { scienceTeacher }
+            });
+
+            studentRepo.Add(new Student("S001", "Alice", "Smith", new DateTime(2008, 5, 14), "ENR-2026-01", 10) { Id = "S001" });
+            studentRepo.Add(new Student("S002", "Charlie", "Brown", new DateTime(2008, 11, 3), "ENR-2026-02", 10) { Id = "S002" });
+            studentRepo.Add(new Student("S003", "Diana", "Prince", new DateTime(2007, 2, 19), "ENR-2026-03", 11) { Id = "S003" });
+
+            courseRepo.Add(new Course("Algebra 101", "MTH101", 30)
+            {
+                Id = "C001",
+                Title = "Algebra 101",
+                Code = "MTH101"
+            });
+            courseRepo.Add(new Course("Physics 101", "SCI101", 25)
+            {
+                Id = "C002",
+                Title = "Physics 101",
+                Code = "SCI101"
+            });
+
             
-            var sampleCourse = new Course("Algebra 101", "MTH101", 30);
-            mySchool.Courses.Add(sampleCourse);
+            var reports = new SchoolReports(studentRepo, teacherRepo, courseRepo, departmentRepo);
 
             bool running = true;
             while (running)
@@ -28,7 +65,7 @@ namespace SchoolModel
                 Console.WriteLine("       SCHOOL MANAGEMENT SYSTEM         ");
                 Console.WriteLine("========================================");
                 Console.WriteLine("1. List All People (Polymorphism Describe)");
-                Console.WriteLine("2. Print System Reports (IReportable)");
+                Console.WriteLine("2. Print System Reports (LINQ)"); // Updated label
                 Console.WriteLine("3. Add New Person (Student, Teacher, Principal)");
                 Console.WriteLine("4. Enrol Student in Course");
                 Console.WriteLine("5. Exit");
@@ -54,17 +91,16 @@ namespace SchoolModel
                             break;
 
                         case "2":
-                            Console.WriteLine("=== School System Reports (IReportable) ===");
-                            Console.WriteLine();
                             
-                            List<IReportable> reportables = new List<IReportable>();
-                            reportables.AddRange(mySchool.People.OfType<IReportable>()); 
-                            reportables.Add(sampleCourse);       
+                            Console.WriteLine("=== School System Reports (LINQ Queries) ===");
+                            Console.WriteLine();
 
-                            foreach (var item in reportables)
-                            {
-                                Console.WriteLine(item.GetReportDetails());
-                            }
+                            reports.PrintStudentsByYearGroup(10);
+                            reports.PrintTeachersGroupedByDepartment();
+                            reports.PrintTop3CoursesByEnrolment();
+                            reports.PrintAverageAgePerYearGroup();
+                            reports.PrintCoursesWithoutTeacher();
+                            reports.PrintTotalSalaryCostPerDepartment();
 
                             Console.WriteLine();
                             Console.WriteLine("===============================================");
@@ -149,7 +185,6 @@ namespace SchoolModel
                 }
                 catch (Exception ex)
                 {
-                    
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"[Error]: {ex.Message}");
                     Console.ResetColor();
