@@ -5,9 +5,9 @@ namespace SchoolModel.Models
 {
     public class Course : IReportable, IEntity
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Code { get; set; }
+        public required string Id { get; set; }
+        public required string Title { get; set; }
+        public required string Code { get; set; }
         public Teacher? AssignedTeacher { get; set; }
         
         

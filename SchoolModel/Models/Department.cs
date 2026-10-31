@@ -4,10 +4,10 @@ namespace SchoolModel.Models
 {
     public class Department : IEntity
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Teacher HeadTeacher { get; set; }
-        public List<Teacher> Teachers { get; set; } = new List<Teacher>();
+        public required string Id { get; set; }
+        public required string Name { get; set; }
+        public required Teacher HeadTeacher { get; set; }
+        public required List<Teacher> Teachers { get; set; } = new List<Teacher>();
 
         public Department(string name, Teacher headTeacher)
         {

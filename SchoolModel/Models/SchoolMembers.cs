@@ -4,7 +4,7 @@ namespace SchoolModel.Models
 {
     public abstract class SchoolMembers : IEntity
     {
-        public int Id { get; set; }
+        public  string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         
@@ -35,7 +35,7 @@ namespace SchoolModel.Models
             }
         }
 
-        protected SchoolMembers(int id, string firstName, string lastName, DateTime dob)
+        protected SchoolMembers(string id, string firstName, string lastName, DateTime dob)
         {
             Id = id;
             FirstName = firstName;

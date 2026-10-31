@@ -8,7 +8,7 @@ namespace SchoolModel.Models
         public string EnrolmentNumber { get; set; }
         public int YearGroup { get; set; }
 
-        public Student(int id, string firstName, string lastName, DateTime dob, string enrolmentNumber, int yearGroup)
+        public Student(string id, string firstName, string lastName, DateTime dob, string enrolmentNumber, int yearGroup)
             : base(id, firstName, lastName, dob)
         {
             EnrolmentNumber = enrolmentNumber;

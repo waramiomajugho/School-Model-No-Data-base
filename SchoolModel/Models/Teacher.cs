@@ -24,7 +24,7 @@ namespace SchoolModel.Models
             }
         }
 
-        public Teacher(int id, string firstName, string lastName, DateTime dob, string subject, decimal salary)
+        public Teacher(string id, string firstName, string lastName, DateTime dob, string subject, decimal salary)
             : base(id, firstName, lastName, dob)
         {
             Subject = subject;

@@ -7,7 +7,7 @@ public class Repository<T> where T : class, IEntity
 {
     private readonly List<T> _items = new();
     public IEnumerable<T> GetAll() => _items;
-    public T? GetById(int id) => _items.FirstOrDefault(x => x.Id == id);
+    public T? GetById(string id) => _items.FirstOrDefault(x => x.Id == id);
     public void Add(T item) => _items.Add(item);
 
     public void Update(T item)
@@ -20,7 +20,7 @@ public class Repository<T> where T : class, IEntity
         }
     }
 
-    public void Delete(int id)
+    public void Delete(string id)
     {
         var item = GetById(id);
         if (item != null)
