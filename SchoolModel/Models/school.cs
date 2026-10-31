@@ -6,12 +6,10 @@ namespace SchoolModel.Models
 {
     public class School
     {
-        
         public List<SchoolMembers> People { get; set; } = new List<SchoolMembers>();
         public List<Department> Departments { get; set; } = new List<Department>();
         public List<Course> Courses { get; set; } = new List<Course>();
 
-        
         public void EnrolStudentToCourse(string studentId, string courseCode)
         {
             var student = People.OfType<Student>().FirstOrDefault(s => s.Id == studentId);
@@ -30,7 +28,6 @@ namespace SchoolModel.Models
             Console.WriteLine($"Successfully enrolled {student.FullName} into {course.Title}.");
         }
 
-        
         public void AssignTeacherToCourse(string teacherId, string courseCode)
         {
             var teacher = People.OfType<Teacher>().FirstOrDefault(t => t.Id == teacherId);
@@ -49,24 +46,20 @@ namespace SchoolModel.Models
             Console.WriteLine($"Assigned {teacher.FullName} to teach {course.Title}.");
         }
 
-        
         public void TransferTeacher(string teacherId, string targetDepartmentName)
         {
-            
             var teacher = People.OfType<Teacher>().FirstOrDefault(t => t.Id == teacherId);
             if (teacher == null)
             {
                 throw new ArgumentException($"Teacher with ID {teacherId} not found.");
             }
 
-            
             var targetDepartment = Departments.FirstOrDefault(d => d.Name.Equals(targetDepartmentName, StringComparison.OrdinalIgnoreCase));
             if (targetDepartment == null)
             {
                 throw new ArgumentException($"Department '{targetDepartmentName}' not found.");
             }
 
-            
             foreach (var dept in Departments)
             {
                 if (dept.Teachers.Contains(teacher))
@@ -75,9 +68,41 @@ namespace SchoolModel.Models
                 }
             }
 
-            
             targetDepartment.AddTeacher(teacher);
             Console.WriteLine($"Successfully transferred {teacher.FullName} to the {targetDepartment.Name} department.");
+        }
+
+        
+        public void RemoveTeacher(string teacherId, Repository<Teacher> teacherRepo)
+        {
+            
+            var teacher = teacherRepo.GetById(teacherId);
+            if (teacher == null)
+            {
+                throw new ArgumentException($"Teacher with ID {teacherId} not found.");
+            }
+
+            
+            var departmentLed = Departments.FirstOrDefault(d => d.HeadTeacher != null && d.HeadTeacher.Id == teacherId);
+
+            if (departmentLed != null)
+            {
+                
+                throw new InvalidOperationException(
+                    $"Cannot delete teacher {teacher.FullName} because they are currently heading the {departmentLed.Name} department."
+                );
+            }
+
+
+            teacherRepo.Delete(teacherId);
+            
+            var personRecord = People.FirstOrDefault(p => p.Id == teacherId);
+            if (personRecord != null)
+            {
+                People.Remove(personRecord);
+            }
+
+            Console.WriteLine($"Teacher {teacher.FullName} has been successfully deleted.");
         }
     }
 }
