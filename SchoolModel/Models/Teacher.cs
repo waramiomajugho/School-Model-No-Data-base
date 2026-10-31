@@ -5,6 +5,7 @@ namespace SchoolModel.Models
     public class Teacher : SchoolMembers, IReportable
     {
         
+
         private decimal _salary;
 
         public string Subject { get; set; }
@@ -23,7 +24,7 @@ namespace SchoolModel.Models
             }
         }
 
-        public Teacher(string id, string firstName, string lastName, DateTime dob, string subject, decimal salary)
+        public Teacher(int id, string firstName, string lastName, DateTime dob, string subject, decimal salary)
             : base(id, firstName, lastName, dob)
         {
             Subject = subject;

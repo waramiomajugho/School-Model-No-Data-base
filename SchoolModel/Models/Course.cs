@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace SchoolModel.Models
 {
-    public class Course : IReportable
+    public class Course : IReportable, IEntity
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Code { get; set; }
         public Teacher? AssignedTeacher { get; set; }

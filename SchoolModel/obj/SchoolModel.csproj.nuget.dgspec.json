@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\utc\\Documents\\FULL STACK PROJECTS\\School Model No Data base\\SchoolModel\\SchoolModel.csproj": {}
+    "C:\\Users\\utc\\Documents\\FULL STACK PROJECTS\\School Model No Data base - 2\\SchoolModel\\SchoolModel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\utc\\Documents\\FULL STACK PROJECTS\\School Model No Data base\\SchoolModel\\SchoolModel.csproj": {
+    "C:\\Users\\utc\\Documents\\FULL STACK PROJECTS\\School Model No Data base - 2\\SchoolModel\\SchoolModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\utc\\Documents\\FULL STACK PROJECTS\\School Model No Data base\\SchoolModel\\SchoolModel.csproj",
+        "projectUniqueName": "C:\\Users\\utc\\Documents\\FULL STACK PROJECTS\\School Model No Data base - 2\\SchoolModel\\SchoolModel.csproj",
         "projectName": "SchoolModel",
-        "projectPath": "C:\\Users\\utc\\Documents\\FULL STACK PROJECTS\\School Model No Data base\\SchoolModel\\SchoolModel.csproj",
+        "projectPath": "C:\\Users\\utc\\Documents\\FULL STACK PROJECTS\\School Model No Data base - 2\\SchoolModel\\SchoolModel.csproj",
         "packagesPath": "C:\\Users\\utc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\utc\\Documents\\FULL STACK PROJECTS\\School Model No Data base\\SchoolModel\\obj\\",
+        "outputPath": "C:\\Users\\utc\\Documents\\FULL STACK PROJECTS\\School Model No Data base - 2\\SchoolModel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\utc\\AppData\\Roaming\\NuGet\\NuGet.Config"

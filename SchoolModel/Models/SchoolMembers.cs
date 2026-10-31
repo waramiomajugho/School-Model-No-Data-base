@@ -2,9 +2,9 @@ using System;
 
 namespace SchoolModel.Models
 {
-    public abstract class SchoolMembers
+    public abstract class SchoolMembers : IEntity
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         
@@ -35,12 +35,12 @@ namespace SchoolModel.Models
             }
         }
 
-        protected SchoolMembers(string id, string firstName, string lastName, DateTime dob)
+        protected SchoolMembers(int id, string firstName, string lastName, DateTime dob)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
-            Dob = dob; // Triggers validation setter
+            Dob = dob; 
         }
 
         public abstract string Describe();
