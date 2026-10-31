@@ -17,6 +17,16 @@ namespace SchoolModel.Models
 
         public override string Describe()
         {
+
+            string schoolPhase = YearGroup switch
+            {
+                >= 7 and <= 9 => "Junior Phase",
+                10 or 11 => "GCSE Years",
+                12 or 13 => "Sixth Form",
+                _ => "General Student"
+            };
+
+
             return $"[Student] {FullName}, Age: {Age}, Year Group: {YearGroup}, Enrolment: {EnrolmentNumber}";
         }
 
